@@ -1,5 +1,4 @@
 import './App.css';
-import './normalize.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import Navbar from './headers/Navbar';
 import { Route, Switch } from 'react-router';
