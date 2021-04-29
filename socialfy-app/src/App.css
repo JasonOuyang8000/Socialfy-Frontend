@@ -1,0 +1,18 @@
+[data-theme="light"]{
+  --text-color: black;
+  --background-color: rgb(247, 244, 244);
+ 
+}
+
+[data-theme="dark"]{
+  --text-color: #fcfcfc;
+  --background-color: #1d1c1c;
+}
+
+.App {
+  color: var(--text-color);
+  background-color: var(--background-color);
+  min-height: 100vh;
+}   
+
+
