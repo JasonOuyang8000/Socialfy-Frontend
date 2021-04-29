@@ -13,7 +13,7 @@ function App() {
   return (
     <ThemeContext.Provider value={{theme,setTheme}}>
     <div className="App" data-theme={theme}>
-        <Navbar data-theme={theme}/>
+        <Navbar data-theme={theme} themeControl={{theme,setTheme}}/>
         <Switch>
           <Route exact path ="/">
               <Home />

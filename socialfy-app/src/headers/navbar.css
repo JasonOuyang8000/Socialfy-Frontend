@@ -9,9 +9,11 @@
 [data-theme="dark"] {
     --nav-text-color: rgb(221, 215, 215);
     --nav-background-color: rgba(17, 16, 16, 0.541);
-    --brand-title: black;
+    --brand-title: rgb(56, 121, 141);
     --hover-bg: rgba(170, 169, 169, 0.281);
 }
+
+
 .navbar span,
 .navbar a {
     color: var(--nav-text-color);
@@ -50,4 +52,10 @@
 
 .no-active {
     background: unset!important;
+}
+
+
+
+.pointer {
+    cursor: pointer;
 }
