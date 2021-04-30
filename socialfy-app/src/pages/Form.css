@@ -1,0 +1,18 @@
+.form-holder {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;  
+}
+
+.form-container {
+    background: white;
+    min-height: 800px;
+    width: 1400px;
+    border-radius: 20px;
+}
+
+#sign-title {
+    color: rgb(92, 131, 107);
+}
