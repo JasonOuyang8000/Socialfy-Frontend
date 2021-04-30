@@ -1,14 +1,24 @@
-import { NavLink as Link } from 'react-router-dom';
+import { NavLink as Link, useHistory } from 'react-router-dom';
 import './navbar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHome, faSignOutAlt, faSun, faToggleOff, faToggleOn, faUserCircle, faUsers } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faSignOutAlt, faToggleOff, faToggleOn, faUserCircle, faUsers } from '@fortawesome/free-solid-svg-icons';
 
-const Navbar = ({themeControl}) => {
+
+const Navbar = ({themeControl, setUser, user}) => {
 
     const {theme, setTheme} = themeControl;
 
+    const history = useHistory();
+
     const themeHandler = () => {
         setTheme(theme === 'light' ? 'dark' : 'light' );
+    }
+
+    const handleClick = () => {
+        localStorage.removeItem('userToken');
+        setUser(null);
+        history.push('/');
+        setTheme('light');
     }
 
 
@@ -28,7 +38,7 @@ const Navbar = ({themeControl}) => {
             <Link className="nav-link" to="/profile"><FontAwesomeIcon icon={faUserCircle} size="2x" /></Link>
             </li>
             <li className="nav-item">
-            <span className="nav-link" to=""><FontAwesomeIcon icon={faSignOutAlt} size="2x" /> </span>
+            <span onClick={handleClick} className="nav-link" to=""><FontAwesomeIcon icon={faSignOutAlt} size="2x" /> </span>
             </li>
             <li className="nav-item ml-5">
                 {theme === 'light' ? 

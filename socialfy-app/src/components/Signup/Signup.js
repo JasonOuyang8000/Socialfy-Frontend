@@ -1,19 +1,25 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { faSync } from '@fortawesome/free-solid-svg-icons';
 
-import './Signup.css'
+
+import './Signup.css';
+import axios from 'axios';
+import { UserContext } from '../../context/UserContext';
 
 
 const Signup = () => {
     const choices = ['male', 'female', 'human', 'identicon', 'initials', 'bottts', 'avataaars', 'jdenticon', 'gridy','micah'];
     
     const [count, setCount] = useState(0);
-    const [formImage, setFormImage] = useState('');
+ 
     const [formParams, setFormParams] = useState({
         alias: '',
         image: 'https://avatars.dicebear.com/api/female/6.svg',
-    })
+    });
+
+    const {user, setUser} = useContext(UserContext);
+    
  
 
     const handleTextChange = (e) => {
@@ -23,10 +29,6 @@ const Signup = () => {
             ...formParams,
             alias: value
         });
-
-      
-
-        if(formParams.image) setFormImage(formParams.image);
     }
     
     const handleImageClick = (e) => {
@@ -41,12 +43,27 @@ const Signup = () => {
             image: newImage
         })
         
-        if(formParams.alias !== '') setFormImage(formParams.image);
+
     }   
 
 
-    const handleSubmit = () => {
+    const handleSubmit = async e => {
+        e.preventDefault();
+        try {
+            const response = await axios.post(`${process.env.REACT_APP_BACKEND}/user`, formParams);
+            setUser({
+                alias: response.data.user.alias,
+                image: response.data.user.image,
+            });
+            console.log(response);
+            localStorage.setItem('userToken', response.data.userToken);
+        }
 
+        catch(error) {
+            console.log(error);
+            if (error.response) console.log(error.response.data.error.message);
+        }
+       
     };
 
 
@@ -74,7 +91,7 @@ const Signup = () => {
              
             </div>
 
-            <input type="submit" value="Create an Account" className="btn-submit" />
+            <input type="submit" value="Create Account" className="btn-submit" />
            
             
        
