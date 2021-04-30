@@ -50,18 +50,25 @@ const Signup = () => {
     const handleSubmit = async e => {
         e.preventDefault();
         try {
-            const response = await axios.post(`${process.env.REACT_APP_BACKEND}/user`, formParams);
-            setUser({
-                alias: response.data.user.alias,
-                image: response.data.user.image,
-            });
-            console.log(response);
-            localStorage.setItem('userToken', response.data.userToken);
+            if (formParams.alias !== '') {
+                const response = await axios.post(`${process.env.REACT_APP_BACKEND}/user`, formParams);
+                setUser({
+                    alias: response.data.user.alias,
+                    image: response.data.user.image,
+                });
+               
+                localStorage.setItem('userToken', response.data.userToken);
+            }
+            else {
+                throw new Error("Alias cannot be empty!")
+            }
+         
         }
 
         catch(error) {
-            console.log(error);
+        
             if (error.response) console.log(error.response.data.error.message);
+            else console.log(error.message);
         }
        
     };
@@ -70,9 +77,9 @@ const Signup = () => {
    
 
     return (
-        <form onSubmit={handleSubmit} className="form mx-auto w-50 ">
+        <form onSubmit={handleSubmit} className="form ">
             <div className="mb-5">
-                <input onChange={handleTextChange} type="text" className="w-100 sign-input-text" placeholder="Enter an Alias"/>
+                <input onChange={handleTextChange} type="text" className="mx-auto d-block sign-input-text" placeholder="Enter an Alias"/>
             </div>
 
             <div className="mb-5">

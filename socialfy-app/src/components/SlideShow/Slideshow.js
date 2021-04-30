@@ -1,16 +1,13 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import './Slideshow.css';
 
 export default function Slideshow (){
-
+    const isCancelled = useRef(false);
     const [images, setImages] = useState([]);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     let timer = null;
 
-  
-
-  
 
     const changeImageIndex = () => {
         const img = document.querySelector('.slideshow img');
@@ -30,15 +27,23 @@ export default function Slideshow (){
     }, [ currentImageIndex ]);
 
     useEffect(() => {
-        axios.get('https://api.pexels.com/v1/search?query=nature&per_page=20',{
+        const pageNumber = Math.floor(Math.random() * 10);
+        axios.get(`https://api.pexels.com/v1/search?query=nature&per_page=20&page=${pageNumber}`,{
             headers: {
                 authorization: process.env.REACT_APP_API_KEY
             }
         }).then(res => {
             const { photos } = res.data;
             const imagesCopy = photos.map(info => info.src.large);
-            setImages(imagesCopy);
+            if (!isCancelled.current) {
+                setImages(imagesCopy);
+            }
+        
         })
+
+        return() => {
+            isCancelled.current = true;
+        }
     }, []);
 
 
