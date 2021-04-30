@@ -1,0 +1,27 @@
+.post-form {
+    background: var(--background-color-card);
+    border-radius: 30px;
+    height: 271px;
+    padding: 10px;
+}
+
+.post-form textarea {
+    width: 70%;
+    margin: 0 auto;
+    display: block;
+    border: 0;
+    background: var(--background-color-card);
+    color:  var(--text-color);
+    outline: none;
+    font-size: 24px;
+}
+
+.btn-post {
+    background: var(--background-color);
+    color:  var(--text-color);
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: 0;
+    font-size: 18px;
+    font-weight: 600;
+}

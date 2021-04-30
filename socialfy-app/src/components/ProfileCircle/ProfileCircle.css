@@ -1,0 +1,17 @@
+[data-theme="light"] {
+    --border-color: rgb(86, 175, 134);
+    
+}
+  
+[data-theme="dark"] {
+    --border-color: rgb(253, 250, 250);
+}
+
+
+.user-profile-circle {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px; 
+    border: 4px solid var(--border-color);
+}
+

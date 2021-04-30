@@ -51,7 +51,7 @@ const Login = () => {
     return (
         <form onSubmit={handleSubmit} className="form mx-auto w-50 ">
             <div className="mb-5">
-                <textarea onChange={handleTextChange} type="text" className="w-100 sign-input-text" placeholder="Enter Your Secret Token"/>
+                <textarea onChange={handleTextChange} type="text" className="w-100 sign-input-text" values={formParams.key} placeholder="Enter Your Secret Token"/>
             </div>
 
            

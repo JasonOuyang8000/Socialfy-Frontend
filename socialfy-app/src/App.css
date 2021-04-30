@@ -1,6 +1,6 @@
 [data-theme="light"]{
   --text-color: black;
-
+  --background-color-card: #fafafa;
   --background-color: #aee1f9;
   --background-image: linear-gradient(315deg, #aee1f9 0%, #f6ebe6 74%);
  
@@ -8,6 +8,7 @@
 [data-theme="dark"]{
   --text-color: #ffffff;
   --background-color: #2e2d2d;
+  --background-color-card: #1b1b1b;
 }
 
 
@@ -26,4 +27,9 @@ body {
   background-image: var(--background-image);
 }   
 
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1450px !important;
+ }
+}
 
