@@ -16,3 +16,12 @@
 #sign-title {
     color: rgb(92, 131, 107);
 }
+
+.sign-input-text {
+    background: rgb(185, 214, 185);
+    border: 1px solid rgba(128, 128, 128, 0.452);
+    padding: 10px 20px;
+    outline: none;
+    border-radius: 10px;
+    font-size: 16px;
+}

@@ -12,7 +12,7 @@ const Form = () => {
                     <Slideshow />
                 </div>
                 <div className="col-8 p-4">
-                    <h1 id="sign-title" className="text-center font-weight-bold">
+                    <h1 id="sign-title" className="text-center mb-5 font-weight-bold">
                         Create a Quick Account
                     </h1>
                     <Signup />

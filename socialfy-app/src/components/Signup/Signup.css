@@ -1,0 +1,11 @@
+.select-css {
+    width: 100%;
+    padding: 10px 20px;
+}
+
+.form-image {
+    height: 200px;
+    width: 200px;
+    display: block;
+    margin: 0 auto;
+}
