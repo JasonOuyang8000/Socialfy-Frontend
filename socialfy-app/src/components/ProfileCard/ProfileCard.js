@@ -8,8 +8,8 @@ const ProfileCard = () => {
     return (
     
         <div className="profile-card text-center shadow p-3 mb-5">
-            <ProfileCircle user={user} />
-            <h3>{user.alias}</h3>
+            <ProfileCircle styleName="user-profile-circle" image={user.image} />
+            <h3 className="line-clamp">{user.alias}</h3>
 
         </div>
     );

@@ -2,13 +2,13 @@
 import './ProfileCircle.css';
 
 
-const ProfileCircle = ({user}) => {
+const ProfileCircle = ({image, styleName}) => {
     
 
     return (
         <div 
-        style={{backgroundImage:`url(${user.image})`}} 
-        className="bg user-profile-circle d-block mx-auto mb-5"
+        style={{backgroundImage:`url(${image})`}} 
+        className={`bg ${styleName} d-block mx-auto mb-5`}
         >
         </div>
     )

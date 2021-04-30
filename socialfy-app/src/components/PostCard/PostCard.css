@@ -1,0 +1,14 @@
+.post-card {
+    min-height: 276px;
+    border-radius: 30px;
+    padding: 10px 20px;
+    background: var(--background-color-card);
+}
+
+.post-card-name {
+    font-size: 22px;
+}
+
+.post-card p {
+    font-size: 20px;
+}

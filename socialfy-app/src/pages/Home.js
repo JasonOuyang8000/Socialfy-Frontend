@@ -1,4 +1,5 @@
 import PostForm from "../components/PostForm/PostForm"
+import PostList from "../components/PostList/PostList"
 import ProfileCard from "../components/ProfileCard/ProfileCard"
 
 
@@ -15,9 +16,10 @@ const Home = () => {
             </div>
             <div className="col-md-12 col-lg-6">
                 <PostForm />
+                <PostList/>
             </div>
             <div className="col-md-12 col-lg-3">
-            
+        
             </div>
         
 
