@@ -59,3 +59,22 @@
 .pointer {
     cursor: pointer;
 }
+
+
+@media screen and (max-width: 576px) {
+    .navbar-nav {
+        margin-top: 30px;
+        margin: 20px auto 0 auto;
+    }
+
+    .nav-link {
+        padding: 0;
+        min-width: 20px;
+        margin-right: 10px;
+    }
+
+    .navbar .active {
+        background: unset;
+        
+    }
+}
