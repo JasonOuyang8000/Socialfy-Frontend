@@ -1,14 +1,20 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
-import ScrollMenu from 'react-horizontal-scrolling-menu';
+import { faSync } from '@fortawesome/free-solid-svg-icons';
+
 import './Signup.css'
 
+
 const Signup = () => {
-    const menuItems = ['avataaars', 'bottts','gridy', 'human','male', 'female','micah', 'jdenticon'];
+    const choices = ['male', 'female', 'human', 'identicon', 'initials', 'bottts', 'avataaars', 'jdenticon', 'gridy','micah'];
+    
+    const [count, setCount] = useState(0);
     const [formImage, setFormImage] = useState('');
     const [formParams, setFormParams] = useState({
         alias: '',
-        image: 'https://avatars.dicebear.com/api/avataaars/test.svg',
+        image: 'https://avatars.dicebear.com/api/female/6.svg',
     })
+ 
 
     const handleTextChange = (e) => {
         const { value } = e.target;
@@ -23,40 +29,55 @@ const Signup = () => {
         if(formParams.image) setFormImage(formParams.image);
     }
     
-    const handleImageChange = (e) => {
-        const { value } = e.target;
+    const handleImageClick = (e) => {
+        e.preventDefault();
+        setCount(count + 1);
+        const randChoice = choices[Math.floor(Math.random() * choices.length)];
       
+        const newImage = `https://avatars.dicebear.com/api/${randChoice}/${count}.svg`;
 
         setFormParams({
             ...formParams,
-            image: value
+            image: newImage
         })
         
         if(formParams.alias !== '') setFormImage(formParams.image);
     }   
 
 
-    console.log(formParams);
+    const handleSubmit = () => {
 
+    };
+
+
+   
 
     return (
-        <form className="form mx-auto w-50 ">
+        <form onSubmit={handleSubmit} className="form mx-auto w-50 ">
             <div className="mb-5">
                 <input onChange={handleTextChange} type="text" className="w-100 sign-input-text" placeholder="Enter an Alias"/>
             </div>
 
             <div className="mb-5">
-                <select onChange={handleImageChange} className="select-css">
-                    {menuItems.map((option,index) => 
-                    <option  key={index} value={`https://avatars.dicebear.com/api/${option}/${formParams.alias}.svg`}>{option}</option>    
-                    )
-                }
-                </select>
-            </div>
+                <h3 className="text-center mb-4">Your Profile Image</h3>
+                <div 
+                style={{backgroundImage:`url(${formParams.image})`}} 
+                className="bg profile-circle d-block mx-auto mb-5"
+                >
+           
+                </div> 
+                <button onClick={handleImageClick} className="btn-green-custom generate-new-image d-block mx-auto">
+                    <FontAwesomeIcon icon={faSync} />
+                </button>
+
             
-            {formImage !=='' &&  
-                <img className="form-image" src={formImage} alt="male" />
-            }
+             
+            </div>
+
+            <input type="submit" value="Create an Account" className="btn-submit" />
+           
+            
+       
 
         </form>
     )

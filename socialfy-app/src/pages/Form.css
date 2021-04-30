@@ -8,9 +8,10 @@
 
 .form-container {
     background: white;
-    min-height: 800px;
+    min-height: 750px;
     width: 1400px;
     border-radius: 20px;
+    
 }
 
 #sign-title {
@@ -24,4 +25,14 @@
     outline: none;
     border-radius: 10px;
     font-size: 16px;
+}
+
+.btn-submit {
+    padding: 10px 20px;
+    border: 0;
+    border-radius: 15px;
+    border: 1px solid rgb(143, 141, 141);
+    background: rgb(229, 248, 229);
+    margin: 0 auto;
+    display: block;
 }

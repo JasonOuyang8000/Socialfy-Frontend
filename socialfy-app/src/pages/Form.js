@@ -11,7 +11,7 @@ const Form = () => {
             <div className="col-4 p-0">
                     <Slideshow />
                 </div>
-                <div className="col-8 p-4">
+                <div className="col-8 p-4 d-flex flex-column justify-content-center">
                     <h1 id="sign-title" className="text-center mb-5 font-weight-bold">
                         Create a Quick Account
                     </h1>
