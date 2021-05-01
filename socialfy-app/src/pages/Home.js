@@ -65,7 +65,7 @@ const Home = () => {
             </div>
             <div className="col-12 col-lg-6">
                 <PostForm handleClick={handleClick} disabled={disabled}/>
-                <PostList posts={posts} loaded={loaded}/>
+                <PostList setPosts={setPosts} posts={posts} loaded={loaded}/>
             </div>
             <div className="col-12 col-lg-3">
         

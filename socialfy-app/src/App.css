@@ -5,6 +5,7 @@
   --background-image: linear-gradient(315deg, #aee1f9 0%, #f6ebe6 74%);
   --card-color-icon: #aee1f9!important;
   --comment-background:  #d8fafa;
+  --background-color-selected: #ffba9f;
 }
 [data-theme="dark"]{
   --text-color: #ffffff;
@@ -12,6 +13,7 @@
   --background-color-card: #1b1b1b;
   --card-color-icon: rgb(255, 255, 255) !important;
   --comment-background:  #141414;
+  --background-color-selected: #f7fcb7;
 }
 
 

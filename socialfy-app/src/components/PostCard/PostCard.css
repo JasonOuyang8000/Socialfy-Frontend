@@ -26,3 +26,8 @@
     color: var(--card-color-icon);
     cursor: pointer;
 }
+
+.like-text {
+    line-height: 20px;
+    font-weight: bold;
+}
