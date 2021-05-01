@@ -39,3 +39,8 @@ body {
   -webkit-box-orient: vertical;  
   overflow: hidden;
 }
+
+.loader-color {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}

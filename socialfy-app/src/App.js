@@ -8,6 +8,7 @@ import { useEffect, useRef, useState } from 'react';
 import { UserContext } from './context/UserContext';
 import Form from './pages/Form';
 import axios from 'axios';
+import Loader from './components/Loader/Loader';
 
 function App() {
   const [loaded, setLoaded] = useState(null);
@@ -20,13 +21,16 @@ function App() {
       try {
         setLoaded(false);
         let isCancelled = false;
+       
         const response = await axios.get(`${process.env.REACT_APP_BACKEND}/user/verify`, {
           headers: {
             authorization: 'Bearer ' + localStorage.getItem('userToken')
           }
         });
+       
         if (!isCancelled) {
           setUser(response.data.user);
+          setLoaded(true);
         }
         
         return () => {
@@ -47,11 +51,9 @@ function App() {
 
   },[]);  
 
-  useEffect(() => {
-    setLoaded(true);
-  }, [ user ]);
 
-  console.log(user);
+
+
 
   return (
     <UserContext.Provider value={{user,setUser}}>
@@ -59,15 +61,21 @@ function App() {
     <div className="App" data-theme={theme}>
 
         {user !== null &&  <Navbar setUser={setUser} user={user}data-theme={theme} themeControl={{theme,setTheme}}/> 
+        
         }
      
         <Switch>
           <Route exact path ="/">
             {
+              loaded ? 
               user !== null ? 
                 <Home />
                 :
                 <Form/>
+              :
+              <div style={{height: "70vh"}} className="d-flex justify-content-center align-items-center">
+                <Loader/>
+              </div>
             }
           
           </Route>

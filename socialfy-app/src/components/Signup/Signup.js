@@ -15,7 +15,7 @@ const Signup = () => {
  
     const [formParams, setFormParams] = useState({
         alias: '',
-        image: 'https://avatars.dicebear.com/api/female/6.svg',
+        image:  `https://avatars.dicebear.com/api/female/${Math.floor(Math.random() * 10000)}.svg`,
     });
 
     const {user, setUser} = useContext(UserContext);
@@ -33,7 +33,7 @@ const Signup = () => {
     
     const handleImageClick = (e) => {
         e.preventDefault();
-        setCount(count + 1);
+        setCount(Math.floor(Math.random() * 10000));
         const randChoice = choices[Math.floor(Math.random() * choices.length)];
       
         const newImage = `https://avatars.dicebear.com/api/${randChoice}/${count}.svg`;
