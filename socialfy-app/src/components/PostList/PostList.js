@@ -8,7 +8,7 @@ import PostCard from "../PostCard/PostCard";
 const PostList = ({posts, loaded}) => {
 
    
-   
+ 
 
 
     return (
