@@ -1,17 +1,19 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useContext, useEffect, useState } from 'react';
+import { Fragment, useContext, useEffect, useState } from 'react';
 import { faSync } from '@fortawesome/free-solid-svg-icons';
 
 
 import './Signup.css';
 import axios from 'axios';
 import { UserContext } from '../../context/UserContext';
+import LoaderTwo from '../Loader/LoaderTwo';
 
 
 const Signup = () => {
     const choices = ['male', 'female', 'human', 'identicon', 'initials', 'bottts', 'avataaars', 'jdenticon', 'gridy','micah'];
     
     const [count, setCount] = useState(0);
+    const [loaded, setLoaded] = useState(true);
  
     const [formParams, setFormParams] = useState({
         alias: '',
@@ -20,7 +22,7 @@ const Signup = () => {
 
     const {user, setUser} = useContext(UserContext);
     
- 
+    
 
     const handleTextChange = (e) => {
         const { value } = e.target;
@@ -51,12 +53,14 @@ const Signup = () => {
         e.preventDefault();
         try {
             if (formParams.alias !== '') {
+                setLoaded(false);
                 const response = await axios.post(`${process.env.REACT_APP_BACKEND}/user`, formParams);
                 setUser({
                     alias: response.data.user.alias,
                     image: response.data.user.image,
                 });
-               
+              
+                setLoaded(true);
                 localStorage.setItem('userToken', response.data.userToken);
             }
             else {
@@ -66,18 +70,21 @@ const Signup = () => {
         }
 
         catch(error) {
-        
+            setLoaded(true);
             if (error.response) console.log(error.response.data.error.message);
             else console.log(error.message);
         }
        
     };
-
+    console.log(loaded);
 
    
 
     return (
-        <form onSubmit={handleSubmit} className="form ">
+        <Fragment>
+      
+
+        <form onSubmit={handleSubmit} className="form positon-relative">
             <div className="mb-5">
                 <input onChange={handleTextChange} type="text" className="mx-auto d-block sign-input-text" placeholder="Enter an Alias"/>
             </div>
@@ -99,11 +106,17 @@ const Signup = () => {
             </div>
 
             <input type="submit" value="Create Account" className="btn-submit" />
-           
-            
-       
 
+            {loaded || 
+            <div className="position-absolute custom-pos">
+                <LoaderTwo/>
+            </div>
+            }
         </form>
+
+
+        </Fragment>
+      
     )
 }
 

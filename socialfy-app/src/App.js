@@ -11,7 +11,7 @@ import axios from 'axios';
 import Loader from './components/Loader/Loader';
 
 function App() {
-  const [loaded, setLoaded] = useState(null);
+  const [loaded, setLoaded] = useState(true);
   const [user, setUser] = useState(null);
   const [theme, setTheme] = useState('light');
 
@@ -27,6 +27,7 @@ function App() {
             authorization: 'Bearer ' + localStorage.getItem('userToken')
           }
         });
+        
        
         if (!isCancelled) {
           setUser(response.data.user);
@@ -40,6 +41,7 @@ function App() {
       }
       catch(error) {
         localStorage.removeItem('userToken');
+        setLoaded(true);
       }
 
     }
@@ -54,11 +56,10 @@ function App() {
 
 
 
-
   return (
     <UserContext.Provider value={{user,setUser}}>
     <ThemeContext.Provider value={{theme,setTheme}}>
-    <div className="App" data-theme={theme}>
+    <div className="App"  data-theme={theme}>
 
         {user !== null &&  <Navbar setUser={setUser} user={user}data-theme={theme} themeControl={{theme,setTheme}}/> 
         

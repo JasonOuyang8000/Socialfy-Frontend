@@ -5,27 +5,9 @@ import Loader from "../Loader/Loader";
 
 import PostCard from "../PostCard/PostCard";
 
-const PostList = () => {
-    const [loaded, setLoaded] = useState(null);
-    const [posts, setPosts] = useState([]);
+const PostList = ({posts, loaded}) => {
 
-    const getPosts = async() => {
-        try {
-            setLoaded(false);
-            const response = await axios.get(`${process.env.REACT_APP_BACKEND}/post`);
-            setLoaded(true);
-            setPosts(response.data.posts);
-        }
-        catch(error) {
-            console.log(error);
-        }
-    }
-
-
-    useEffect(() => {
-        getPosts();
-    }, []);
-
+   
    
 
 

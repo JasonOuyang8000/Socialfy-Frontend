@@ -25,3 +25,7 @@
     font-size: 18px;
     font-weight: 600;
 }
+
+.opacity-disabled {
+    opacity: 0.4;
+}
