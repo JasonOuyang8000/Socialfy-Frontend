@@ -1,0 +1,9 @@
+.comment-alias {
+    font-size: 18px;
+}
+
+.comment-section {
+    min-height: 100px;
+    word-wrap: break-word;
+    overflow: none;
+}

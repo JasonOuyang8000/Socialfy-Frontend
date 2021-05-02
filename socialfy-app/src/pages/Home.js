@@ -16,9 +16,6 @@ const Home = () => {
         try {
             setLoaded(false);
             const response = await axios.get(`${process.env.REACT_APP_BACKEND}/post`);
-            await new Promise(resolve => {
-                setTimeout(resolve, 100)
-            });
             setLoaded(true);
             setPosts(response.data.posts);
         }
@@ -26,6 +23,24 @@ const Home = () => {
             console.log(error);
         }
     }
+
+    
+    const handleDelete = async(e,id) => {
+        try {
+            const response = await axios.delete(`${process.env.REACT_APP_BACKEND}/post/${id}`,{
+                headers: {
+                    authorization: 'Bearer ' + localStorage.getItem('userToken')
+                }
+            });
+
+            getPosts();
+        }   
+        catch(error) {
+            console.log(error);
+        }
+     
+    }
+    
 
     
     const handleClick = async (formParams) => {
@@ -64,8 +79,8 @@ const Home = () => {
               
             </div>
             <div className="col-12 col-lg-6">
-                <PostForm handleClick={handleClick} disabled={disabled}/>
-                <PostList setPosts={setPosts} posts={posts} loaded={loaded}/>
+                <PostForm handleClick={handleClick}  disabled={disabled}/>
+                <PostList setPosts={setPosts} handleDelete={handleDelete} posts={posts} loaded={loaded}/>
             </div>
             <div className="col-12 col-lg-3">
         

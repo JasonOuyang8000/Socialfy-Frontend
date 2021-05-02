@@ -5,7 +5,7 @@ import Loader from "../Loader/Loader";
 
 import PostCard from "../PostCard/PostCard";
 
-const PostList = ({posts, loaded, setPosts}) => {
+const PostList = ({posts, loaded, setPosts, handleDelete}) => {
 
 
     return (
@@ -14,7 +14,7 @@ const PostList = ({posts, loaded, setPosts}) => {
             ? 
         
             posts.map((post) => (
-                <PostCard key={post.id} {...post} setPosts={setPosts} posts={posts} />
+                <PostCard key={post.id} {...post} setPosts={setPosts} posts={posts} handleDelete={handleDelete} />
             ))
                 
             :

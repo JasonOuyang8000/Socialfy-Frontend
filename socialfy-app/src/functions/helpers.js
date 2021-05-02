@@ -13,3 +13,15 @@ export const getLikes = (likeArray) => {
 
     return count;
 }
+
+export const checkLiked = (likeArray, user) => {
+    for (let i = 0; i < likeArray.length; i++ ){
+        
+       
+        if (likeArray[i].userId === user.id) {
+            return likeArray[i].liked;
+        }
+    }
+
+    return false;
+}

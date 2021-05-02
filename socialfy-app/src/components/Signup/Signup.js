@@ -58,6 +58,7 @@ const Signup = () => {
                 setUser({
                     alias: response.data.user.alias,
                     image: response.data.user.image,
+                    id: response.data.user.id,
                 });
               
                 setLoaded(true);
@@ -76,7 +77,7 @@ const Signup = () => {
         }
        
     };
-    console.log(loaded);
+   
 
    
 

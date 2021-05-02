@@ -1,24 +1,27 @@
 import './PostCard.css';
 import { UserContext } from "../../context/UserContext";
-import { Fragment, useContext, useState } from "react";
+import { useContext, useState } from "react";
 import ProfileCircle from '../ProfileCircle/ProfileCircle';
-import { convertTime, getLikes } from '../../functions/helpers';
+import { checkLiked, convertTime, getLikes } from '../../functions/helpers';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faComment, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import { faComment, faThumbsUp, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import Comments from '../Comments/Comments';
 import axios from 'axios';
 
 
 
-const PostCard = ({user, description, updatedAt, id, postLikes, setPosts, posts}) => {  
+const PostCard = ({user, description, updatedAt, id, postLikes, setPosts, posts, handleDelete}) => {  
     
 
     const [showComments, setShowComments] = useState(false);
     const [likeSelected, setLikeSelected] = useState(false);
+    const {user: currentUser} = useContext(UserContext);
     
-    getLikes(postLikes);
-
+  
+   
+    
+   
     const updateLike = async() => {
         try {
             const response = await axios.put(`${process.env.REACT_APP_BACKEND}/post/${id}/like`,{
@@ -50,7 +53,8 @@ const PostCard = ({user, description, updatedAt, id, postLikes, setPosts, posts}
         setLikeSelected(!likeSelected);
         updateLike();
     }
-  
+
+
     
     return (
         <div className="mb-5">
@@ -67,7 +71,7 @@ const PostCard = ({user, description, updatedAt, id, postLikes, setPosts, posts}
                 <div className="col-12 d-flex">
                     <div 
                     onClick={() => setShowComments(!showComments)}  
-                    className={`col-6 d-flex justify-content-center align-items-center icon-card ${showComments ? 'like-selected': ''}`}
+                    className={`${currentUser.id === user.id ? 'col-4': 'col-6'} d-flex justify-content-center align-items-center icon-card ${showComments ? 'like-selected': ''}`}
 
                     >
                     <FontAwesomeIcon
@@ -76,7 +80,7 @@ const PostCard = ({user, description, updatedAt, id, postLikes, setPosts, posts}
                       /> </div>
                     <div 
                     onClick={handleLike}
-                    className={`col-6 d-flex justify-content-center align-items-center icon-card ${getLikes(postLikes)  ? 'like-selected': ''}`}>
+                    className={`${currentUser.id === user.id ? 'col-4': 'col-6'} d-flex justify-content-center align-items-center icon-card ${checkLiked(postLikes,currentUser) ? 'like-selected': ''}`}>
                     <FontAwesomeIcon 
                     icon={faThumbsUp} 
                     size="lg"
@@ -89,13 +93,18 @@ const PostCard = ({user, description, updatedAt, id, postLikes, setPosts, posts}
                         || 
                         0
                     }
-
                     </span>
                     </div>
+                    {currentUser.id === user.id && 
+                        <div className="col-4 d-flex justify-content-center align-items-center icon-card">
+                            <FontAwesomeIcon icon={faTrashAlt}  size="lg" onClick={(e) => handleDelete(e,id)} />
+                        </div>  
+                    }
+                   
                 </div>
             </div>
 
-            {showComments && <Comments image={user.image} />}
+            {showComments && <Comments setShowComments={setShowComments} showComments={showComments} id={id} image={user.image} />}
             
 
         </div>

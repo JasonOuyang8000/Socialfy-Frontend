@@ -6,6 +6,7 @@
   --card-color-icon: #aee1f9!important;
   --comment-background:  #d8fafa;
   --background-color-selected: #ffba9f;
+  --background-color-send: rgb(198, 198, 221);
 }
 [data-theme="dark"]{
   --text-color: #ffffff;
@@ -14,6 +15,7 @@
   --card-color-icon: rgb(255, 255, 255) !important;
   --comment-background:  #141414;
   --background-color-selected: #f7fcb7;
+  --background-color-send: rgb(65, 55, 4);
 }
 
 
