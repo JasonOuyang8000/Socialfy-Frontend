@@ -22,7 +22,7 @@ const Navbar = ({themeControl, setUser, user}) => {
     }
 
 
-    return (<nav className="navbar navbar-expand-lg shadow">
+    return (<nav className="navbar navbar-expand-lg shadow fixed-top">
     <div className="container">
        <Link className="navbar-brand d-flex align-items-center no-active" to="/">
         <FontAwesomeIcon icon={faUsers} size="2x" />

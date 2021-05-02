@@ -11,17 +11,13 @@ import axios from 'axios';
 
 
 
-const PostCard = ({user, description, updatedAt, id, postLikes, setPosts, posts, handleDelete}) => {  
+const PostCard = ({user, description, updatedAt, id, postLikes, setPosts, posts, handleDelete, comments}) => {  
     
 
     const [showComments, setShowComments] = useState(false);
     const [likeSelected, setLikeSelected] = useState(false);
     const {user: currentUser} = useContext(UserContext);
-    
-  
-   
-    
-   
+
     const updateLike = async() => {
         try {
             const response = await axios.put(`${process.env.REACT_APP_BACKEND}/post/${id}/like`,{
@@ -77,7 +73,16 @@ const PostCard = ({user, description, updatedAt, id, postLikes, setPosts, posts,
                     <FontAwesomeIcon
                      icon={faComment}
                      size="lg"
-                      /> </div>
+                      /> 
+                     <span 
+                    className="ml-2 like-text"
+                    >
+                     {comments.length > 0 && comments.length}
+
+                    </span>  
+                    </div>
+                    
+
                     <div 
                     onClick={handleLike}
                     className={`${currentUser.id === user.id ? 'col-4': 'col-6'} d-flex justify-content-center align-items-center icon-card ${checkLiked(postLikes,currentUser) ? 'like-selected': ''}`}>

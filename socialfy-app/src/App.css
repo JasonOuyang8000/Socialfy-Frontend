@@ -24,6 +24,7 @@
 body {
   font-family: 'B612', sans-serif;
   font-size: 16px;
+
 }
 
 
@@ -32,6 +33,7 @@ body {
   background-color: var(--background-color);
   min-height: 100vh;
   background-image: var(--background-image);
+  padding-top: 70px; 
 }   
 
 @media (min-width: 1200px) {

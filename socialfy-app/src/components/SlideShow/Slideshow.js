@@ -27,7 +27,7 @@ export default function Slideshow (){
     }, [ currentImageIndex ]);
 
     useEffect(() => {
-        const pageNumber = Math.floor(Math.random() * 10);
+        const pageNumber = Math.floor(Math.random() * 3);
         axios.get(`https://api.pexels.com/v1/search?query=nature&per_page=20&page=${pageNumber}`,{
             headers: {
                 authorization: process.env.REACT_APP_API_KEY
