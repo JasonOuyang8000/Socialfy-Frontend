@@ -47,9 +47,13 @@ const Home = () => {
         try {
             if (formParams.description === '') throw new Error("Post can't be empty!!");
             setDisabled(true);
-            const response = await axios.post(`${process.env.REACT_APP_BACKEND}/post`, formParams,{
+            const formData = new FormData();
+            formData.append('description', formParams.description);
+            if (formParams.file !== "") formData.append('file', formParams.file);
+            const response = await axios.post(`${process.env.REACT_APP_BACKEND}/post`, formData,{
                 headers: {
-                    authorization: 'Bearer ' + localStorage.getItem('userToken')
+                    authorization: 'Bearer ' + localStorage.getItem('userToken'),
+                    'content-type': 'multipart/form-data'
                 }
             });
             await new Promise(resolve => {
@@ -65,11 +69,9 @@ const Home = () => {
         }
     }
 
-
     useEffect(() => {
         getPosts();
     }, []);
-
 
     return (
         <div className="container c-width mt-5">

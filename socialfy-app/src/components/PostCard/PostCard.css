@@ -31,3 +31,12 @@
     line-height: 20px;
     font-weight: bold;
 }
+
+.post-card img {
+    width: 75%;
+    height: 75%;
+    object-fit: cover;
+   
+    display: block;
+    margin: 0px auto 20px auto;
+}

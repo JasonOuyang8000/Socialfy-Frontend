@@ -11,8 +11,7 @@ import axios from 'axios';
 
 
 
-const PostCard = ({user, description, updatedAt, id, postLikes, setPosts, posts, handleDelete, comments}) => {  
-    
+const PostCard = ({user, description, updatedAt, id, postLikes, setPosts, posts, handleDelete, comments, postImage}) => {  
 
     const [showComments, setShowComments] = useState(false);
     const [likeSelected, setLikeSelected] = useState(false);
@@ -50,6 +49,8 @@ const PostCard = ({user, description, updatedAt, id, postLikes, setPosts, posts,
         updateLike();
     }
 
+   
+ 
 
     
     return (
@@ -62,8 +63,9 @@ const PostCard = ({user, description, updatedAt, id, postLikes, setPosts, posts,
                     <h3 className="post-card-name mt-3">{user.alias}</h3>
                     <p className="card-time">{convertTime(updatedAt)}</p>
                     <p className="mt-4 description-text">{description}</p>
+                    
                 </div>
-            
+                {postImage !== null  && <img src={postImage.link} alt="post" />}
                 <div className="col-12 d-flex">
                     <div 
                     onClick={() => setShowComments(!showComments)}  
