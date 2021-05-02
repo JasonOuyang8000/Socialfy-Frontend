@@ -1,7 +1,7 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import Navbar from './headers/Navbar';
-import { Route, Switch } from 'react-router';
+import { Redirect, Route, Switch } from 'react-router';
 import Home from './pages/Home';
 import {ThemeContext} from './context/ThemeContext';
 import { Fragment, useEffect, useRef, useState } from 'react';
@@ -98,6 +98,7 @@ function App() {
         </Fragment>
           :
           <Route path ="/">
+               <Redirect to="/" />
             <Form/>
           </Route>
          

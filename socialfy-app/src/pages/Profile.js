@@ -65,7 +65,7 @@ const Profile = () => {
             getPosts();
         }
         catch(error)  {
-            console.log(error);
+          
             setLoaded(true);
             setDisabled(false);
         }

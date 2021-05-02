@@ -31,9 +31,9 @@ const PublicProfile = () => {
             setProfileUser(response.data.user);
         }
         catch(error) {
-            history.push('/profile');
             setLoaded(true);
-        
+            history.push('/profile');
+           
         }
     }
 
@@ -55,14 +55,12 @@ const PublicProfile = () => {
         }
      
     }
-    
-
-    
+     
    
 
     useEffect(() => {
         getPosts();
-    }, []);
+    }, [ profileId ]);
 
     return (
         <div className="container c-width-md mt-5">

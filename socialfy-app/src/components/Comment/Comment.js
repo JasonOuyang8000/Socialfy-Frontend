@@ -32,7 +32,7 @@ const Comment = ({userId,description,user,updatedAt}) => {
                      
                     </div>
                     <div className="col-3">
-                    <ProfileCircle image={user.image} styleName="profile-circle-x-small  mx-auto" />
+                    <ProfileCircle image={user.image} userId={currentUser.id} styleName="profile-circle-x-small  mx-auto" />
                     <p className="time-text">{convertTime(updatedAt)}</p>
                     </div>
                 </Fragment>

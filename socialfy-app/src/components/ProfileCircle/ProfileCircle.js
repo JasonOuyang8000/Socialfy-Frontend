@@ -4,7 +4,7 @@ import './ProfileCircle.css';
 
 
 const ProfileCircle = ({image, styleName,userId}) => {
-    console.log(userId)
+        
 
     return (
         <Link
