@@ -33,7 +33,7 @@ body {
   background-color: var(--background-color);
   min-height: 100vh;
   background-image: var(--background-image);
-  padding-top: 70px; 
+ 
 }   
 
 @media (min-width: 1200px) {
@@ -56,4 +56,8 @@ body {
 
 .c-width-md {
   max-width: 1000px!important;
+}
+
+.nav-space {
+  padding-top: 100px; 
 }

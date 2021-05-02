@@ -10,6 +10,7 @@ import Form from './pages/Form';
 import axios from 'axios';
 import Loader from './components/Loader/Loader';
 import Profile from './pages/Profile';
+import PublicProfile from './pages/PublicProfile';
 
 function App() {
   const [loaded, setLoaded] = useState(true);
@@ -60,12 +61,12 @@ function App() {
   return (
     <UserContext.Provider value={{user,setUser}}>
     <ThemeContext.Provider value={{theme,setTheme}}>
-    <div className="App"  data-theme={theme}>
+    <div className={`App ${user !== null ? 'nav-space' : ''}`} data-theme={theme}>
 
         {user !== null &&  <Navbar setUser={setUser} user={user}data-theme={theme} themeControl={{theme,setTheme}}/> 
         
         }
-     
+      
      
         <Switch>
         {user !== null ? 
@@ -80,7 +81,7 @@ function App() {
               </div>
             }
           </Route>
-          <Route path ="/profile">
+          <Route exact path ="/profile">
             {
               loaded ? 
                 <Profile />
@@ -90,8 +91,8 @@ function App() {
               </div>
             }
           </Route>
-          <Route>
-
+          <Route path="/profile/:id">
+            <PublicProfile />
 
           </Route>
         </Fragment>

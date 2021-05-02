@@ -47,7 +47,7 @@ const Profile = () => {
     
     const handleClick = async (formParams) => {
         try {
-            if (formParams.description === '') throw new Error("Post can't be empty!!");
+            if(formParams.description === '' && formParams.file === '') throw new Error("Post can't be empty!!");
             setDisabled(true);
             const formData = new FormData();
             formData.append('description', formParams.description);
@@ -79,7 +79,7 @@ const Profile = () => {
         <div className="container c-width-md mt-5">
             <div className="row ">
             <div className="col-12 col-lg-4">
-               <ProfileCard />
+               <ProfileCard  user={currentUser} />
                 
             </div>
        

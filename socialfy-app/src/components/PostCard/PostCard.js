@@ -57,7 +57,7 @@ const PostCard = ({user, description, updatedAt, id, postLikes, setPosts, posts,
         <div className="mb-5">
             <div className="post-card row no-gutters position-relative flex-lg-row p-4 shadow">
                 <div className="col-2">
-                    <ProfileCircle image={user.image} styleName="profile-circle-small  mx-auto" />
+                    <ProfileCircle image={user.image} userId={user.id} styleName="profile-circle-small  mx-auto" />
                 </div>
                 <div className="col-10">
                     <h3 className="post-card-name mt-3">{user.alias}</h3>

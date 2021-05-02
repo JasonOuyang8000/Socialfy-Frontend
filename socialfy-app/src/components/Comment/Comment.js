@@ -14,11 +14,11 @@ const Comment = ({userId,description,user,updatedAt}) => {
             <div className="mb-3 comment-section d-flex ">
                 {currentUser.id !== user.id ? 
                 <Fragment>
-                    <div className="col-2">
-                    <ProfileCircle image={user.image} styleName="profile-circle-x-small  mx-auto" />
+                    <div className="col-3">
+                    <ProfileCircle image={user.image} userId={userId} styleName="profile-circle-x-small  mx-auto" />
                     <p className="time-text">{convertTime(updatedAt)}</p>
                     </div>
-                    <div className="col-10">
+                    <div className="col-9">
                         <h3 className="comment-alias">{user.alias}</h3>
                         <p className="w-75">{description}</p>
                       
@@ -26,12 +26,12 @@ const Comment = ({userId,description,user,updatedAt}) => {
                 </Fragment>
                 :
                 <Fragment>
-                     <div className="col-10">
+                     <div className="col-9">
                         <h3 className="comment-alias text-right">You</h3>
                         <p className="text-right">{description}</p>
                      
                     </div>
-                    <div className="col-2">
+                    <div className="col-3">
                     <ProfileCircle image={user.image} styleName="profile-circle-x-small  mx-auto" />
                     <p className="time-text">{convertTime(updatedAt)}</p>
                     </div>

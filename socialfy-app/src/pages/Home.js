@@ -2,8 +2,9 @@ import PostForm from "../components/PostForm/PostForm"
 import PostList from "../components/PostList/PostList"
 import ProfileCard from "../components/ProfileCard/ProfileCard";
 
-import {useEffect, useState} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import axios from "axios";
+import { UserContext } from "../context/UserContext";
 
 
 const Home = () => {
@@ -11,6 +12,7 @@ const Home = () => {
     const [posts, setPosts] = useState([]);
     const [loaded, setLoaded] = useState(null);
     const [disabled, setDisabled] = useState(false);
+    const {user: currentUser} = useContext(UserContext);
 
     const getPosts = async() => {
         try {
@@ -45,7 +47,7 @@ const Home = () => {
     
     const handleClick = async (formParams) => {
         try {
-            if (formParams.description === '') throw new Error("Post can't be empty!!");
+            if (formParams.description === '' && formParams.file === '') throw new Error("Post can't be empty!!");
             setDisabled(true);
             const formData = new FormData();
             formData.append('description', formParams.description);
@@ -77,7 +79,7 @@ const Home = () => {
         <div className="container c-width mt-5">
             <div className="row">
             <div className="col-12 col-lg-3">
-               <ProfileCard />
+               <ProfileCard user={currentUser}/>
               
             </div>
             <div className="col-12 col-lg-6 col-md-12">

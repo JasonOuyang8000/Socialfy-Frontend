@@ -1,16 +1,18 @@
 
+import { Link } from 'react-router-dom';
 import './ProfileCircle.css';
 
 
-const ProfileCircle = ({image, styleName}) => {
-    
+const ProfileCircle = ({image, styleName,userId}) => {
+    console.log(userId)
 
     return (
-        <div 
+        <Link
+        to={`/profile/${userId}`}
         style={{backgroundImage:`url(${image})`}} 
-        className={styleName}
+        className={`${styleName} profile-circle-link`}
         >
-        </div>
+        </Link>
     )
 }
 

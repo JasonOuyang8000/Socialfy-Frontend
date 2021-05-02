@@ -3,4 +3,8 @@
 .profile-card {
     background: var(--background-color-card);
     border-radius: 30px;
+    display: block;
+    color: var(--text-color) !important;
+    text-decoration: none !important;
 }
+

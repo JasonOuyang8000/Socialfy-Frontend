@@ -1,17 +1,16 @@
+import { Link } from 'react-router-dom';
 import ProfileCircle from '../ProfileCircle/ProfileCircle';
 import './ProfileCard.css';
-import { useContext } from "react";
-import { UserContext } from "../../context/UserContext";
-const ProfileCard = () => {
-    const {user} = useContext(UserContext);
+
+const ProfileCard = ({user}) => {
 
     return (
-    
-        <div className="profile-card text-center shadow p-3 mb-5">
-            <ProfileCircle styleName="user-profile-circle bg d-block mx-auto mb-5" image={user.image} />
+        
+        <Link to={`/profile/${user.id}`} className="profile-card text-center shadow p-3 mb-5">
+            <ProfileCircle styleName="user-profile-circle bg d-block mx-auto mb-5" image={user.image} userId={user.id} />
             <h3 className="line-clamp">{user.alias}</h3>
 
-        </div>
+        </Link >
     );
 
 
