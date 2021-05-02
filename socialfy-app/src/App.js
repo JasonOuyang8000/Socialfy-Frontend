@@ -4,11 +4,12 @@ import Navbar from './headers/Navbar';
 import { Route, Switch } from 'react-router';
 import Home from './pages/Home';
 import {ThemeContext} from './context/ThemeContext';
-import { useEffect, useRef, useState } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 import { UserContext } from './context/UserContext';
 import Form from './pages/Form';
 import axios from 'axios';
 import Loader from './components/Loader/Loader';
+import Profile from './pages/Profile';
 
 function App() {
   const [loaded, setLoaded] = useState(true);
@@ -67,21 +68,39 @@ function App() {
      
      
         <Switch>
+        {user !== null ? 
+        <Fragment>
           <Route exact path ="/">
             {
               loaded ? 
-              user !== null ? 
                 <Home />
-                :
-                <Form/>
               :
               <div style={{height: "70vh"}} className="d-flex justify-content-center align-items-center">
                 <Loader/>
               </div>
             }
-          
           </Route>
+          <Route path ="/profile">
+            {
+              loaded ? 
+                <Profile />
+              :
+              <div style={{height: "70vh"}} className="d-flex justify-content-center align-items-center">
+                <Loader/>
+              </div>
+            }
+          </Route>
+          <Route>
 
+
+          </Route>
+        </Fragment>
+          :
+          <Route path ="/">
+            <Form/>
+          </Route>
+         
+        }
         </Switch>
     </div>
     </ThemeContext.Provider>

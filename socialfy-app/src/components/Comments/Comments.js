@@ -10,7 +10,7 @@ import ProfileCircle from '../ProfileCircle/ProfileCircle';
 import useWindowDimensions from '../WindowDimensions/WindowDimensions';
 import './Comments.css';
 
-const Comments = ({id, setShowComments, showComments}) => {
+const Comments = ({id, setShowComments, showComments, posts, setPosts}) => {
     
     const {user} = useContext(UserContext);
     const [formParams, setFormParams] = useState({
@@ -25,6 +25,7 @@ const Comments = ({id, setShowComments, showComments}) => {
         const response = await axios.get(`${process.env.REACT_APP_BACKEND}/post/${id}/comment`);
         setComments(response.data.comments);
         setLoaded(true);
+        
     }
 
 
@@ -46,8 +47,26 @@ const Comments = ({id, setShowComments, showComments}) => {
                 authorization: 'Bearer ' + localStorage.getItem('userToken')
             }
         });
-        getComments();
+
+       
         
+
+        const postsCopy = [...posts];
+
+        for (let i = 0; i < postsCopy.length; i++) {
+            if (postsCopy[i].id === id) {
+                postsCopy[i].comments.push(response.data.comment);
+            }
+        }
+
+ 
+        
+
+        setPosts(postsCopy);
+
+      
+        getComments();
+
 
         }
     }
@@ -63,8 +82,7 @@ const Comments = ({id, setShowComments, showComments}) => {
         });
     }, [comments]);
 
-    
-
+ 
     return (
         <div className="comments-section shadow ">
             <form onSubmit={handleSubmit} className="comment-form mb-5 d-flex align-items-center">

@@ -53,3 +53,7 @@ body {
   background-color: var(--background-color);
   color: var(--text-color);
 }
+
+.c-width-md {
+  max-width: 1000px!important;
+}

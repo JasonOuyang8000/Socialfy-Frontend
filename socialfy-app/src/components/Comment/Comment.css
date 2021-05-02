@@ -7,3 +7,10 @@
     word-wrap: break-word;
     overflow: none;
 }
+
+.time-text {
+    color: rgb(114, 114, 114);
+    font-size: 12px;
+    text-align: center;
+    margin-top: 10px;
+}

@@ -2,20 +2,22 @@ import PostForm from "../components/PostForm/PostForm"
 import PostList from "../components/PostList/PostList"
 import ProfileCard from "../components/ProfileCard/ProfileCard";
 
-import {useEffect, useState} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import axios from "axios";
+import { UserContext } from "../context/UserContext";
 
 
-const Home = () => {
+const Profile = () => {
     
     const [posts, setPosts] = useState([]);
     const [loaded, setLoaded] = useState(null);
     const [disabled, setDisabled] = useState(false);
+    const {user: currentUser} = useContext(UserContext);
 
     const getPosts = async() => {
         try {
             setLoaded(false);
-            const response = await axios.get(`${process.env.REACT_APP_BACKEND}/post`);
+            const response = await axios.get(`${process.env.REACT_APP_BACKEND}/user/${currentUser.id}/post`);
             setLoaded(true);
             setPosts(response.data.posts);
         }
@@ -74,20 +76,19 @@ const Home = () => {
     }, []);
 
     return (
-        <div className="container c-width mt-5">
-            <div className="row">
-            <div className="col-12 col-lg-3">
+        <div className="container c-width-md mt-5">
+            <div className="row ">
+            <div className="col-12 col-lg-4">
                <ProfileCard />
-              
+                
             </div>
-            <div className="col-12 col-lg-6 col-md-12">
+       
+            <div className="col-12 col-lg-8 ">
                 <PostForm handleClick={handleClick}  disabled={disabled}/>
                 <PostList setPosts={setPosts} handleDelete={handleDelete} posts={posts} loaded={loaded}/>
             </div>
-            <div className="col-12 col-lg-3 col-md-12">
-        
-            </div>
-        
+           
+         
 
 
             </div>
@@ -98,4 +99,4 @@ const Home = () => {
 
 
 
-export default Home;
+export default Profile;
