@@ -7,13 +7,32 @@ import './Signup.css';
 import axios from 'axios';
 import { UserContext } from '../../context/UserContext';
 import LoaderTwo from '../Loader/LoaderTwo';
+import Modal from 'react-modal';
 
+const customStyles = {
+    content : {
+      top                   : '50%',
+      left                  : '50%',
+      right                 : 'auto',
+      bottom                : 'auto',
+      marginRight           : '-50%',
+      transform             : 'translate(-50%, -50%)'
+    }
+  };
 
 const Signup = () => {
     const choices = ['male', 'female', 'human', 'identicon', 'initials', 'bottts', 'avataaars', 'jdenticon', 'gridy','micah'];
     
     const [count, setCount] = useState(0);
     const [loaded, setLoaded] = useState(true);
+    const [modalOpen, setModalOpen] = useState(false);
+    const [tempUser, setTempUser] = useState({
+        alias: '',
+        image: '',
+        id: '',
+        key: ''
+    })
+ 
  
     const [formParams, setFormParams] = useState({
         alias: '',
@@ -55,13 +74,18 @@ const Signup = () => {
             if (formParams.alias !== '') {
                 setLoaded(false);
                 const response = await axios.post(`${process.env.REACT_APP_BACKEND}/user`, formParams);
-                setUser({
+                setTempUser({
                     alias: response.data.user.alias,
                     image: response.data.user.image,
                     id: response.data.user.id,
+                    key: response.data.user.key
                 });
+
+                setModalOpen(true);
               
                 setLoaded(true);
+
+
                 localStorage.setItem('userToken', response.data.userToken);
             }
             else {
@@ -77,6 +101,15 @@ const Signup = () => {
         }
        
     };
+
+    const closeModal = () => {
+        setModalOpen(false);
+        setUser({
+            alias: tempUser.alias,
+            image: tempUser.image,
+            id: tempUser.id,
+        });
+    }
    
 
    
@@ -107,6 +140,22 @@ const Signup = () => {
             </div>
 
             <input type="submit" value="Create Account" className="btn-submit" />
+
+            <Modal 
+            isOpen={modalOpen}
+            style={customStyles}
+            onRequestClose={closeModal}
+            >
+                <div className="modal-inside">
+                    <h3 className="mb-4">Save Your Key</h3>
+                    <p>The key is used to Login.</p>
+                    <textarea className="custom-textarea" readOnly={true} value={tempUser.key}/>
+                </div>
+                <button onClick={closeModal} className="btn-modal">Okay</button>
+                <button className="btn-modal" onClick={() => {navigator.clipboard.writeText(tempUser.key)}}
+                >Copy to Clipboard</button>
+            </Modal>
+
 
             {loaded || 
             <div className="position-absolute custom-pos">

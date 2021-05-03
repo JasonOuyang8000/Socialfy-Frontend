@@ -111,7 +111,16 @@ const PostCard = ({user, description, updatedAt, id, postLikes, setPosts, posts,
                 </div>
             </div>
 
-            {showComments && <Comments posts={posts} setPosts={setPosts} setShowComments={setShowComments} showComments={showComments} id={id} image={user.image} />}
+            {showComments && 
+            <Comments 
+            posts={posts} 
+            setPosts={setPosts} 
+            setShowComments={setShowComments} 
+            showComments={showComments} 
+            id={id} 
+            image={user.image}
+            postOwner={user}
+            />}
             
 
         </div>

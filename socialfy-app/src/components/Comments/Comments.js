@@ -10,7 +10,7 @@ import ProfileCircle from '../ProfileCircle/ProfileCircle';
 import useWindowDimensions from '../WindowDimensions/WindowDimensions';
 import './Comments.css';
 
-const Comments = ({id, setShowComments, showComments, posts, setPosts}) => {
+const Comments = ({id, setShowComments, showComments, posts, setPosts, postOwner}) => {
     
     const {user} = useContext(UserContext);
     const [formParams, setFormParams] = useState({
@@ -100,7 +100,7 @@ const Comments = ({id, setShowComments, showComments, posts, setPosts}) => {
             </form>
             {loaded ?
               comments.map(comment => (
-                  <Comment key={comment.id} {...comment} />
+                  <Comment key={comment.id} {...comment} postOwner={postOwner} />
               )) :
              <div style={{height: '200px'}} className="d-flex small-loader justify-content-center align-items-center">
                 <LoaderThree />

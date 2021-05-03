@@ -78,22 +78,19 @@ const Home = () => {
     return (
         <div className="container c-width mt-5">
             <div className="row">
-            <div className="col-12 col-lg-3">
-               <ProfileCard user={currentUser}/>
-              
+                <div className="col-12 col-lg-3">
+                <ProfileCard user={currentUser}/>
+                
+                </div>
+                <div className="col-12 col-lg-6 col-md-12">
+                    <PostForm handleClick={handleClick}  disabled={disabled}/>
+                    <PostList setPosts={setPosts} handleDelete={handleDelete} posts={posts} loaded={loaded}/>
+                </div>
+                <div className="col-12 col-lg-3 col-md-12">
+                </div>
+            
             </div>
-            <div className="col-12 col-lg-6 col-md-12">
-                <PostForm handleClick={handleClick}  disabled={disabled}/>
-                <PostList setPosts={setPosts} handleDelete={handleDelete} posts={posts} loaded={loaded}/>
-            </div>
-            <div className="col-12 col-lg-3 col-md-12">
-        
-            </div>
-        
-
-
-            </div>
-      
+            
         </div>
     )
 }

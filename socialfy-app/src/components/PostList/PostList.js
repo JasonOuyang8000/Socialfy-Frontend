@@ -6,7 +6,7 @@ import Loader from "../Loader/Loader";
 import PostCard from "../PostCard/PostCard";
 
 const PostList = ({posts, loaded, setPosts, handleDelete}) => {
-   
+  
     return (
         <div className="post-list">
             {loaded 
