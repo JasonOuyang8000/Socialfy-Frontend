@@ -1,7 +1,8 @@
 [data-theme="light"]{
   --text-color: black;
   --background-color-card: #fafafa;
-  --background-color: #aee1f9;
+  --background-color: #9ee4fa;
+  --background-color-light: #e3f8df;
   --background-image: linear-gradient(315deg, #aee1f9 0%, #f6ebe6 74%);
   --card-color-icon: #aee1f9!important;
   --comment-background:  #d8fafa;
@@ -20,6 +21,7 @@
   --background-color-send: rgb(65, 55, 4);
   --background-color-chat: rgb(158, 136, 12);
   --background-color-chat-text: rgb(252, 231, 111);
+  --background-color-light: #4f5050;
 }
 
 
@@ -48,9 +50,14 @@ body {
 
 .line-clamp {
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;  
   overflow: hidden;
+  text-overflow: ellipsis;
+
+  /* Needed to make it work */
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .loader-color {

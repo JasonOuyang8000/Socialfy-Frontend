@@ -1,6 +1,5 @@
-import { faMinus, faMinusSquare, faTrashAlt, faUpload } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt, faUpload } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import axios from 'axios';
 import { useState } from 'react';
 import './PostForm.css';
 

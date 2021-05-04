@@ -1,8 +1,7 @@
-import { faCheck, faStickyNote, faUserFriends, faUserMinus, faUserPlus } from "@fortawesome/free-solid-svg-icons";
+import { faStickyNote, faUserFriends, faUserMinus, faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { checkFriend } from "../../functions/helpers";
 import FriendRequest from "../FriendRequest.js/FriendRequest";
 import './FriendsCard.css';
 
@@ -34,8 +33,10 @@ const FriendsCard = ({posts,user,profileId}) => {
     },[]);
 
 
+
+
     return (
-        <div className="friends-card p-4 row no-gutters shadow mb-5">
+        <div className="friends-card p-4 row no-gutters shadow mb-5 mt-4">
                 <div className={`col-12 ${user.id === newProfileId  ? 'col-md-6' : 'col-md-4'}  d-flex  flex-column mb-4 align-items-center justify-content-center`}>
                     <p className="mb-2 friends-total-text">Friends</p>
                     <span className="">

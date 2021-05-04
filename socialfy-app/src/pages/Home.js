@@ -52,7 +52,9 @@ const Home = () => {
             setDisabled(true);
             const formData = new FormData();
             formData.append('description', formParams.description);
+            
             if (formParams.file !== "") formData.append('file', formParams.file);
+         
             const response = await axios.post(`${process.env.REACT_APP_BACKEND}/post`, formData,{
                 headers: {
                     authorization: 'Bearer ' + localStorage.getItem('userToken'),
