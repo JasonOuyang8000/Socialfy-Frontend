@@ -86,14 +86,15 @@ const Comments = ({id, setShowComments, showComments, posts, setPosts, postOwner
     return (
         <div className="comments-section shadow ">
             <form onSubmit={handleSubmit} className="comment-form mb-5 d-flex align-items-center">
-                <div className="col-2">
-                    <ProfileCircle image={user.image} userId={user.id} styleName="profile-circle-x-small ml-md-5 mt-5 " />
+                <div className="col-2 ">
+                    <ProfileCircle image={user.image} userId={user.id} styleName="profile-circle-x-small ml-auto mt-5" />
                 </div>
-                <div className="col-10 d-flex ">
-                    <input value={formParams.description} onChange={handleChange} className="mt-5 mr-3 ml-3 col-8 comment-input shadow-sm" type="text" placeholder="Write an Opinion..." />
+                <div className="col-10 d-flex">
+                    <input value={formParams.description} onChange={handleChange} className="mt-5  
+                    col-8  comment-input shadow-sm" type="text" placeholder="Write an Opinion..." />
                     {
-                    (formParams.description !== "" && width > 700)  && 
-                    <input className="mt-5 comment-send shadow-sm col-2" type="submit" value="Send" />
+                    (formParams.description !== "" )  && 
+                    <input className="mt-5 comment-send shadow-sm col-3 ml-2" type="submit" value="Send" />
                     }
                     
                 </div>

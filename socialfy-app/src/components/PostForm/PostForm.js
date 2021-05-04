@@ -88,7 +88,7 @@ const PostForm = ({handleClick,disabled}) => {
 
                         <input id="file-input" type="file" name="myImage" onChange={handleImageChange} />
                 </div>
-                <button onClick={handleFormParams} className="col-4 btn-post">Send a Post</button>
+                <button onClick={handleFormParams} className="col-4 btn-post">Post</button>
             </div>
            
              

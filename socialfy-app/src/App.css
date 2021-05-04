@@ -7,16 +7,19 @@
   --comment-background:  #d8fafa;
   --background-color-selected: #ffba9f;
   --background-color-send: rgb(198, 198, 221);
+  --background-color-chat: rgb(208, 208, 233);
+  --background-color-chat-text: rgb(163, 153, 209);
 }
 [data-theme="dark"]{
   --text-color: #ffffff;
-  --background-color: #2e2d2d;
+  --background-color: #2e2e2d;
   --background-color-card: #1b1b1b;
   --card-color-icon: rgb(255, 255, 255) !important;
   --comment-background:  #141414;
   --background-color-selected: #f7fcb7;
   --background-color-send: rgb(65, 55, 4);
   --background-color-chat: rgb(158, 136, 12);
+  --background-color-chat-text: rgb(252, 231, 111);
 }
 
 

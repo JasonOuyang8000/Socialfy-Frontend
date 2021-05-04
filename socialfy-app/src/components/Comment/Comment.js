@@ -14,7 +14,7 @@ const Comment = ({userId,description,user,updatedAt,postOwner}) => {
                 <ProfileCircle image={user.image} userId={userId} styleName="profile-circle-x-small  ml-auto" />
                
                 </div>
-                <div className="col-9">
+                <div className="col-10">
                     <h3 className="comment-alias mr-4">{user.alias} {postOwner.alias === user.alias && "👑"} <span className="time-text">  {convertTime(updatedAt)}</span></h3>
                     <p className="w-75">{description}</p>
                     
