@@ -56,10 +56,10 @@ const PostCard = ({user, description, updatedAt, id, postLikes, setPosts, posts,
     return (
         <div className="mb-5">
             <div className="post-card row no-gutters position-relative flex-lg-row p-4 shadow">
-                <div className="col-2">
-                    <ProfileCircle image={user.image} userId={user.id} styleName="profile-circle-small  mx-auto" />
+                <div className="col-3 d-flex justify-content-end">
+                    <ProfileCircle image={user.image} userId={user.id} styleName="profile-circle-small mr-3 mt-2" />
                 </div>
-                <div className="col-10">
+                <div className="col-9">
                     <h3 className="post-card-name mt-3">{user.alias}</h3>
                     <p className="card-time">{convertTime(updatedAt)}</p>
                     <p className="mt-4 description-text">{description}</p>

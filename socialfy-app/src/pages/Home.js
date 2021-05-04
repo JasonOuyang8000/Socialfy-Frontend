@@ -5,6 +5,7 @@ import ProfileCard from "../components/ProfileCard/ProfileCard";
 import {useContext, useEffect, useState} from 'react';
 import axios from "axios";
 import { UserContext } from "../context/UserContext";
+import FriendList from "../components/Friendslist/FriendList";
 
 
 const Home = () => {
@@ -77,16 +78,17 @@ const Home = () => {
 
     return (
         <div className="container c-width mt-5">
-            <div className="row">
-                <div className="col-12 col-lg-3">
+            <div className="row ">
+                <div className="col-xl-3 d-sm-block d-none">
                 <ProfileCard user={currentUser}/>
                 
                 </div>
-                <div className="col-12 col-lg-6 col-md-12">
+                <div className="col-12 col-md-6">
                     <PostForm handleClick={handleClick}  disabled={disabled}/>
                     <PostList setPosts={setPosts} handleDelete={handleDelete} posts={posts} loaded={loaded}/>
                 </div>
-                <div className="col-12 col-lg-3 col-md-12">
+                <div className="col-md-6 col-xl-3 order-1">
+                    <FriendList />
                 </div>
             
             </div>

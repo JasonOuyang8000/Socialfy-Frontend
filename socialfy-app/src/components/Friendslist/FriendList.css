@@ -1,0 +1,16 @@
+.friend-list {
+    border-radius: 30px;
+    padding: 10px;
+    background: var(--background-color-card);
+    min-height: 82vh;
+    position: sticky;
+  
+    top: 140px;
+}
+
+#list-title {
+    text-align: center;
+    font-size: 24px;
+    border-radius: 10px;    
+    
+}
