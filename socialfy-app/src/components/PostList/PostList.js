@@ -1,6 +1,3 @@
-import axios from "axios";
-
-import { useEffect, useState } from "react";
 import Loader from "../Loader/Loader";
 
 import PostCard from "../PostCard/PostCard";
