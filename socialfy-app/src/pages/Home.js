@@ -88,7 +88,7 @@ const Home = () => {
                     <PostList setPosts={setPosts} handleDelete={handleDelete} posts={posts} loaded={loaded}/>
                 </div>
                 <div className="col-md-6 col-xl-3 order-1">
-                    <FriendList />
+                    <FriendList user={currentUser}/>
                 </div>
             
             </div>

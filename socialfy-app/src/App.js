@@ -92,8 +92,8 @@ function App() {
             }
           </Route>
           <Route path="/profile/:id">
-            <PublicProfile />
-
+          
+          <PublicProfile />
           </Route>
         </Fragment>
           :

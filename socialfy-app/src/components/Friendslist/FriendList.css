@@ -20,3 +20,18 @@
    
     border-bottom: 2px solid var(--background-color);
 }
+
+.friend-list-place-holder {
+    background: var(--background-color);
+    opacity: 0.4;
+    height: 400px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.friend-list-place-holder h3 {
+ 
+    text-align: center;
+}

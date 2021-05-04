@@ -6,6 +6,7 @@ import axios from "axios";
 import { UserContext } from "../context/UserContext";
 import { useHistory, useParams } from "react-router";
 import LoaderThree from "../components/Loader/LoaderThree";
+import FriendsCard from "../components/FriendsCard/FriendsCard";
 
 
 const PublicProfile = () => {
@@ -20,10 +21,7 @@ const PublicProfile = () => {
     const getPosts = async() => {
         try {
             setLoaded(false);
-            if (user.id === parseInt(profileId)) {
-                history.push('/profile');
-                return;
-            }
+           
             const response = await axios.get(`${process.env.REACT_APP_BACKEND}/user/${profileId}/post`);
            
             setLoaded(true);
@@ -32,7 +30,7 @@ const PublicProfile = () => {
         }
         catch(error) {
             setLoaded(true);
-            history.push('/profile');
+        
            
         }
     }
@@ -59,12 +57,16 @@ const PublicProfile = () => {
    
 
     useEffect(() => {
+        
         getPosts();
     }, [ profileId ]);
+
+  
 
     return (
         <div className="container c-width-md mt-5">
             <div className="row justify-content-center">
+                
                 <div className="col-8">
                     {loaded ? 
                         <ProfileCard user={profileUser} />
@@ -75,16 +77,18 @@ const PublicProfile = () => {
                         <LoaderThree />
                         </div>
                     }
-                
-                    
+                </div>
+
+                <div className="col-8">
+                    <FriendsCard posts={posts} user={user} profileId={profileId}/>
                 </div>
         
                 <div className="col-8">
                 
-                    <PostList setPosts={setPosts} handleDelete={handleDelete} posts={posts} loaded={loaded}/>
+                    <PostList setPosts={setPosts} handleDelete={handleDelete} posts={posts}  loaded={loaded}/>
                 </div>
             
-         
+               
 
 
             </div>

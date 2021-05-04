@@ -3,31 +3,34 @@ import { useEffect, useState } from "react";
 import './FriendList.css';
 
 
-const FriendList = () => {
+const FriendList = ({user}) => {
     const [friends, setFriends] = useState([]);
     const getFriends = async () => {
-
+        try {
+            const response  = await axios.get(`${process.env.REACT_APP_BACKEND}/user/${user.id}/friend`);
+        }
+        catch(error) {
+            console.log(error);
+        }
       
-;   
-        const response  = await axios.get(`${process.env.REACT_APP_BACKEND}/user/friend`,{
-            headers: {
-                authorization: 'Bearer ' + localStorage.getItem('userToken')
-              }
-        });
 
-        console.log(response.data);
+       
         
     }
 
     useEffect(() => {
         getFriends();
-    });
+    },[]);
 
     return (
-        <div className="friend-list shadow-lg">
+        <div className="friend-list shadow-lg p-4">
             <div className="title-box">
             <h3 className="mb-2" id="list-title">Friends</h3>
-                
+             
+            </div>
+            <div className="friend-list-place-holder mt-4">
+                    <h3>No friends Yet...</h3>
+                    
             </div>
         </div>
     )
