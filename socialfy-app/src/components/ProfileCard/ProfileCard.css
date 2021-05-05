@@ -6,5 +6,7 @@
     display: block;
     color: var(--text-color) !important;
     text-decoration: none !important;
+    position: sticky;
+    top: 140px;
 }
 

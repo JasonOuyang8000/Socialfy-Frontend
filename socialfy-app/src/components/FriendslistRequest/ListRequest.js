@@ -65,7 +65,7 @@ const ListRequest = ({getFriends}) => {
             <div className="requested-box p-3">
             {
             requests.received.map(r => (
-                <div className="list-item-friend d-flex align-items-center" key={r.id}>
+                <div className="list-item-friend shadow-sm d-flex align-items-center" key={r.id}>
                     <div className="col-3">
                         <ProfileCircle image={r.sentRequests.image} userId={r.sentRequests.id} styleName="profile-circle-x-small" />
                     </div>
@@ -93,7 +93,7 @@ const ListRequest = ({getFriends}) => {
             :
             <div className="requested-box p-3">
             {requests.requested.map(r => (
-                <div className="list-item-friend d-flex align-items-center" key={r.id}>
+                <div className="list-item-friend shadow-sm d-flex align-items-center" key={r.id}>
                     <div className="col-3">
                         <ProfileCircle image={r.receivedRequests.image} userId={r.receivedRequests.id} styleName="profile-circle-x-small  " />
                     </div>

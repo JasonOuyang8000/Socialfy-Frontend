@@ -30,7 +30,7 @@ const FriendsCard = ({posts,user,profileId}) => {
 
     useEffect(() => {
         getFriends();
-    },[]);
+    },[ profileId ]);
 
 
 
@@ -42,7 +42,7 @@ const FriendsCard = ({posts,user,profileId}) => {
                     <span className="">
 
                         <FontAwesomeIcon className="mr-2 friends-card-selected" icon={faUserFriends} size="lg"/>
-                        {friends.length === 0  ? '' : friends.length}
+                        {friends.length}
                     </span>
                     
                 </div>

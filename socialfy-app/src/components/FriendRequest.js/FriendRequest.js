@@ -39,6 +39,7 @@ const FriendRequest = ({profileId, userId, friends}) => {
 
     const getUserRequest = async () => {
         try {
+            console.log('test');
             const response = await axios.get(`${process.env.REACT_APP_BACKEND}/user/request`,{
                 headers: {
                     authorization: 'Bearer ' + localStorage.getItem('userToken')
@@ -58,14 +59,16 @@ const FriendRequest = ({profileId, userId, friends}) => {
     }
 
     useEffect(() => {
-
+    
         setIsFriends(checkFriend(friends, userId));
        
     }, [friends])
 
     useEffect(() => {
         getUserRequest();
-    }, [])
+    }, [ ])
+
+    console.log(friends.length);
 
 
     return (
