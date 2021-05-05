@@ -50,8 +50,8 @@ const Chatbox = ({chatFriend, setShowChatBox, messages, setMessages}) => {
       }, [ messages])
 
     return (
-        <div className="chat-box shadow line-clamp">
-            <div className="title-box">
+        <div className="chat-box shadow ">
+            <div className="title-box line-clamp">
                 <h3>{chatFriend.alias}</h3>
                 <FontAwesomeIcon onClick={syncMessages} className="fa-btn-effect chat-refresh" icon={faSync} />
                 <FontAwesomeIcon onClick={() => setShowChatBox(false)} className="fa-btn-effect chat-close" icon={faBan} />
@@ -71,13 +71,13 @@ const Chatbox = ({chatFriend, setShowChatBox, messages, setMessages}) => {
                                         <p className="">{message.info}</p>
                                     </div>
                                 </div>
-                                <p className="text-small ml-2 time-text text-left">{convertTime(message.updatedAt)}</p>
+                                <p className="text-small word-break  ml-2 time-text text-left">{convertTime(message.updatedAt)}</p>
                             </div>
                             :
                             <div key={message.id} className="mb-3 d-flex text-right ">
                                 <div className="col-12">
                                 <p className="">{message.info}</p>
-                                <p className="text-small time-text text-right">{convertTime(message.updatedAt)}</p>
+                                <p className="text-small word-break time-text text-right">{convertTime(message.updatedAt)}</p>
                                 </div>
                             </div>
                     ))

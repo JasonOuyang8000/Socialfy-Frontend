@@ -150,3 +150,7 @@
     left: 70px;
     z-index: 999;
 }
+
+.word-break {
+    word-break: break-all;
+}
