@@ -76,8 +76,8 @@ const Chatbox = ({chatFriend, setShowChatBox, messages, setMessages}) => {
                             :
                             <div key={message.id} className="mb-3 d-flex text-right ">
                                 <div className="col-12">
-                                <p className="">{message.info}</p>
-                                <p className="text-small word-break time-text text-right">{convertTime(message.updatedAt)}</p>
+                                <p className="word-break">{message.info}</p>
+                                <p className="text-small  time-text text-right">{convertTime(message.updatedAt)}</p>
                                 </div>
                             </div>
                     ))
