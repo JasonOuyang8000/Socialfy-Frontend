@@ -68,6 +68,7 @@
     overflow-y: auto;
     padding: 10px;
     margin-top: 45px;
+    margin-bottom: 20px;
 }
 
 /* width */
@@ -141,4 +142,11 @@
     font-size: 10px!important;
     margin-bottom: 10px;
   
+}
+
+.sync-btn-friends {
+    position: relative;
+    top: -398px;
+    left: 70px;
+    z-index: 999;
 }

@@ -1,4 +1,4 @@
-import { faBan, faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faBan, faCheck, faSync } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -52,11 +52,15 @@ const ListRequest = ({getFriends}) => {
         getFriends();
     }, [requests])
 
+    const syncFriends = () => {
+        getRequests();
+    }
+
     return (
         <div className="list-request">
             <h3>Receieved</h3>
-      
-            
+            <FontAwesomeIcon onClick={syncFriends} className="fa-btn-effect sync-color sync-btn-friends" size="lg" icon={faSync}/>
+
             {requests.received.length === 0 ?
             <div className="request-placeholder">
                 <h3>None Received Yet...</h3>

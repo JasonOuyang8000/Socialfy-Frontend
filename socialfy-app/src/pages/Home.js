@@ -7,6 +7,8 @@ import axios from "axios";
 import { UserContext } from "../context/UserContext";
 import FriendList from "../components/Friendslist/FriendList";
 import Chatbox from "../components/Chatbox/Chatbox";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { fas, faSync } from "@fortawesome/free-solid-svg-icons";
 
 
 
@@ -31,6 +33,7 @@ const Home = () => {
         }
         catch(error) {
             console.log(error);
+            setLoaded(true);
         }
     }
 
@@ -53,9 +56,6 @@ const Home = () => {
      
     }
 
-
-
-    
     const chatClick = async (e,friendParams) => {
         try {
             const response = await axios.get(`${process.env.REACT_APP_BACKEND}/user/${friendParams.id}/message`,{
@@ -107,6 +107,7 @@ const Home = () => {
 
     return (
         <div className="container c-width mt-5">
+              <FontAwesomeIcon onClick={getPosts} className="fa-btn-effect sync-color sync-btn-home" size="lg" icon={faSync}/>
             <div className="row ">
                 <div className="col-xl-3 d-xl-block d-none">
                 <ProfileCard user={currentUser}/>
@@ -115,12 +116,10 @@ const Home = () => {
                 setMessages={setMessages} 
                 setShowChatBox={setShowChatBox}
                 chatFriend={chatFriend}
-                
                 />}
-               
-                
                 </div>
                 <div className="col-12 col-md-6">
+              
                     <PostForm handleClick={handleClick}  disabled={disabled}/>
                     <PostList setPosts={setPosts} handleDelete={handleDelete} posts={posts} loaded={loaded}/>
                 </div>

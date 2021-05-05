@@ -69,3 +69,13 @@ body {
   max-width: 1000px!important;
 }
 
+.sync-btn-home {
+  position: fixed;
+  bottom: 25px;
+  z-index: 998;
+  right: 40px;
+}
+
+.sync-color {
+  color: rgb(133, 194, 83);
+}
