@@ -6,7 +6,7 @@ import { convertTime } from '../../functions/helpers';
 import ProfileCircle from '../ProfileCircle/ProfileCircle';
 import './Chatbox.css';
 
-const Chatbox = ({chatFriend, setShowChatBox, messages, setMessages}) => {
+const Chatbox = ({chatFriend, setShowChatBox, messages, setMessages, newMessage, setNewMessage}) => {
     const [text,setText] = useState('');
 
     const sendText = async(e) => {
@@ -39,15 +39,35 @@ const Chatbox = ({chatFriend, setShowChatBox, messages, setMessages}) => {
             });
 
             setMessages(response.data.messages);
+           
         }
         catch(error) {
             console.log(error);
         }
     }
 
+    const handleChange = (e)=> {
+        setText(e.target.value)
+    }
+
     useEffect(() => {
         document.querySelector('.chat-messages').scrollTop = document.querySelector('.chat-messages').scrollHeight
-      }, [ messages])
+    }, [ messages ])
+
+    useEffect(() => {
+        if(newMessage) {
+            syncMessages();
+            setNewMessage(false);
+        } 
+
+        console.log('ran')
+    }, [ newMessage ])
+  
+
+       
+   console.log(newMessage);
+
+ 
 
     return (
         <div className="chat-box shadow ">
@@ -90,7 +110,7 @@ const Chatbox = ({chatFriend, setShowChatBox, messages, setMessages}) => {
             
 
             <form onSubmit={sendText} className="input-container">
-                <input onChange={(e) => setText(e.target.value)} value={text} className="chat-input" type="text" placeholder="send a message"/>    
+                <input onChange={handleChange} value={text} className="chat-input" type="text" placeholder="send a message"/>    
                 <button  className="chat-send"> Send</button>
             </form>    
             

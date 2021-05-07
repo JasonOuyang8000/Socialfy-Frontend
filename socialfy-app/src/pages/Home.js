@@ -2,28 +2,31 @@ import PostForm from "../components/PostForm/PostForm"
 import PostList from "../components/PostList/PostList"
 import ProfileCard from "../components/ProfileCard/ProfileCard";
 
-import {useContext, useEffect, useState} from 'react';
+import {useCallback, useContext, useEffect, useState} from 'react';
 import axios from "axios";
 import { UserContext } from "../context/UserContext";
 import FriendList from "../components/Friendslist/FriendList";
 import Chatbox from "../components/Chatbox/Chatbox";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { fas, faSync } from "@fortawesome/free-solid-svg-icons";
-
+import { faLessThanEqual, fas, faSync } from "@fortawesome/free-solid-svg-icons";
+import { io } from "socket.io-client";
 
 
 
 const Home = () => {
-    
+  
     const [posts, setPosts] = useState([]);
     const [loaded, setLoaded] = useState(null);
     const [disabled, setDisabled] = useState(false);
     const {user: currentUser} = useContext(UserContext);
     const [showChatBox, setShowChatBox] = useState(false);
     const [messages, setMessages] = useState([]);
+    const [newMessage, setNewMessage] = useState(false);
+    const [currentChat, setCurrentChat] = useState(null);
     const [chatFriend, setChatFriend] = useState({});
-
-
+    const [connected, setConnected] = useState(false);
+    const socketio = io(process.env.REACT_APP_BACKEND);
+   
     const getPosts = async() => {
         try {
             setLoaded(false);
@@ -35,6 +38,9 @@ const Home = () => {
             console.log(error);
             setLoaded(true);
         }
+    }
+    if (newMessage === false && currentChat !== null) { 
+        socketio.on(`message${currentUser.id}-${currentChat}`,() => setNewMessage(true));
     }
 
     
@@ -64,14 +70,22 @@ const Home = () => {
                 }
             });
             if (!showChatBox) setShowChatBox(true);
+        
+           
             setChatFriend(friendParams);
-            setMessages(response.data.messages);    
+            setMessages(response.data.messages);   
+            
+         
+          
+            
+    
+       
         }   
         catch(error) {
             console.log(error);
         }
     }
-
+    
     
     const handleClick = async (formParams) => {
         try {
@@ -88,9 +102,7 @@ const Home = () => {
                     'content-type': 'multipart/form-data'
                 }
             });
-            await new Promise(resolve => {
-                setTimeout(resolve, 100)
-            });
+      
             setDisabled(false);
             getPosts();
         }
@@ -100,11 +112,47 @@ const Home = () => {
             setDisabled(false);
         }
     }
+    const eventHandler = () => {
+        setConnected(true);
+    }
+
+    // const getSocket = () => {
+    //     const token = localStorage.getItem('userToken');
+    //     if (token) {
+           
+    //         return socketio.connect(process.env.REACT_APP_BACKEND, {
+    //             query: {
+    //                 token
+    //             }
+    //         })
+    //     }
+    //     return;
+    // }
+
+
 
     useEffect(() => {
-        getPosts();
+        
+        
+        socketio.emit('verify', localStorage.getItem('userToken'));
+
+       
+        
+        socketio.on(`message${currentUser.id}`,() => setNewMessage(true));
+        socketio.on('connection', eventHandler)
+        
+        getPosts(); 
+
+
+
+        return () => {
+            socketio.off('Disconnect',eventHandler);
+        }
     }, []);
 
+
+
+   
     return (
         <div className="container c-width mt-5">
               <FontAwesomeIcon onClick={getPosts} className="fa-btn-effect sync-color sync-btn-home" size="lg" icon={faSync}/>
@@ -112,6 +160,8 @@ const Home = () => {
                 <div className="col-xl-3 d-xl-block d-none">
                 <ProfileCard user={currentUser}/>
                 {showChatBox && <Chatbox 
+                newMessage={newMessage}
+                setNewMessage={setNewMessage}
                 messages={messages} 
                 setMessages={setMessages} 
                 setShowChatBox={setShowChatBox}
@@ -124,7 +174,7 @@ const Home = () => {
                     <PostList setPosts={setPosts} handleDelete={handleDelete} posts={posts} loaded={loaded}/>
                 </div>
                 <div className="col-md-6 col-xl-3 order-1">
-                    <FriendList user={currentUser} chatClick={chatClick}/>
+                    <FriendList socketio={socketio} user={currentUser} chatClick={chatClick}/>
                 </div>
 
             

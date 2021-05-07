@@ -12,10 +12,13 @@ import Loader from './components/Loader/Loader';
 import Profile from './pages/Profile';
 import PublicProfile from './pages/PublicProfile';
 
+
 function App() {
+
   const [loaded, setLoaded] = useState(true);
   const [user, setUser] = useState(null);
   const [theme, setTheme] = useState('light');
+
 
  
   const verifyUser = async() => {
@@ -52,6 +55,7 @@ function App() {
 
   useEffect(() => {
     verifyUser();
+  
 
   },[]);  
 
@@ -59,6 +63,7 @@ function App() {
 
 
   return (
+
     <UserContext.Provider value={{user,setUser}}>
     <ThemeContext.Provider value={{theme,setTheme}}>
     <div className={`App ${user !== null ? 'nav-space' : ''}`} data-theme={theme}>
@@ -107,6 +112,7 @@ function App() {
     </div>
     </ThemeContext.Provider>
     </UserContext.Provider>
+
   );
 }
 
